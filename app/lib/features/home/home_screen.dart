@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:johar/l10n/app_localizations.dart';
 import '../../core/constants.dart';
 import '../../core/services/local_store.dart';
 import '../../models/training_module.dart';

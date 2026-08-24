@@ -7,8 +7,9 @@ build/
 .flutter-plugins
 .flutter-plugins-dependencies
 
-# Generated localization (produced by `flutter gen-l10n` / `flutter pub get`)
-lib/gen_l10n/
+# Generated localization .dart (produced by `flutter gen-l10n` / `flutter pub get`).
+# The .arb source files in lib/l10n/ ARE tracked; only the generated Dart is ignored.
+lib/l10n/app_localizations*.dart
 
 # IDE
 .idea/
