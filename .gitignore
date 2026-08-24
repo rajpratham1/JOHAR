@@ -1,0 +1,43 @@
+# ---- Secrets / env ----
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+serviceAccount*.json
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+
+# ---- Node / Next.js / Hardhat ----
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+cache/
+artifacts/
+typechain-types/
+npm-debug.log*
+yarn-error.log*
+
+# ---- Flutter / Dart ----
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/build/
+app/ios/Pods/
+app/android/.gradle/
+app/android/local.properties
+app/**/generated_plugin_registrant.*
+app/lib/l10n/generated/
+*.g.dart
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

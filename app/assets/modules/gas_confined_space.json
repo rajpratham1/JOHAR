@@ -1,0 +1,150 @@
+{
+  "_comment": "Santali ('sat') strings mirror English as an interim placeholder. A native Ol Chiki speaker must replace them before final submission (see app/README.md).",
+  "id": "gas_confined_space",
+  "domain": "Gas Leak & Confined Space",
+  "estimatedMinutes": 7,
+  "title": {
+    "en": "Gas Leak & Confined Space",
+    "hi": "गैस रिसाव और सीमित स्थान",
+    "sat": "Gas Leak & Confined Space"
+  },
+  "steps": [
+    {
+      "type": "info",
+      "title": {
+        "en": "What is a confined space?",
+        "hi": "सीमित स्थान क्या है?",
+        "sat": "What is a confined space?"
+      },
+      "body": {
+        "en": "A confined space has limited entry and exit and is not made for continuous work — tanks, silos, sumps, and mine voids. Gases can build up quickly.",
+        "hi": "सीमित स्थान में प्रवेश और निकास सीमित होता है और यह लगातार काम के लिए नहीं बना होता — जैसे टंकी, साइलो, सम्प और खदान की खाली जगह। यहाँ गैस तेज़ी से जमा हो सकती है।",
+        "sat": "A confined space has limited entry and exit and is not made for continuous work — tanks, silos, sumps, and mine voids. Gases can build up quickly."
+      }
+    },
+    {
+      "type": "info",
+      "title": {
+        "en": "Dangerous gases",
+        "hi": "खतरनाक गैसें",
+        "sat": "Dangerous gases"
+      },
+      "body": {
+        "en": "Methane is explosive, carbon monoxide is toxic, hydrogen sulphide (H2S) is deadly, and low oxygen suffocates. You cannot rely on smell.",
+        "hi": "मीथेन विस्फोटक है, कार्बन मोनोऑक्साइड विषैली है, हाइड्रोजन सल्फाइड (H2S) जानलेवा है, और ऑक्सीजन की कमी दम घोंट देती है। सूँघने पर भरोसा न करें।",
+        "sat": "Methane is explosive, carbon monoxide is toxic, hydrogen sulphide (H2S) is deadly, and low oxygen suffocates. You cannot rely on smell."
+      }
+    },
+    {
+      "type": "ar",
+      "title": {
+        "en": "Read the gas detector",
+        "hi": "गैस डिटेक्टर पढ़ें",
+        "sat": "Read the gas detector"
+      },
+      "body": {
+        "en": "In AR, check the multi-gas meter reading before entry. Green means safe; any alarm means do not enter.",
+        "hi": "एआर में, प्रवेश से पहले मल्टी-गैस मीटर की रीडिंग जाँचें। हरा मतलब सुरक्षित; कोई भी अलार्म मतलब प्रवेश न करें।",
+        "sat": "In AR, check the multi-gas meter reading before entry. Green means safe; any alarm means do not enter."
+      }
+    },
+    {
+      "type": "info",
+      "title": {
+        "en": "Permit to work",
+        "hi": "वर्क परमिट",
+        "sat": "Permit to work"
+      },
+      "body": {
+        "en": "Never enter without a valid confined-space entry permit and a trained standby person watching from outside.",
+        "hi": "मान्य सीमित स्थान प्रवेश परमिट और बाहर से नज़र रखने वाले प्रशिक्षित स्टैंडबाय व्यक्ति के बिना कभी प्रवेश न करें।",
+        "sat": "Never enter without a valid confined-space entry permit and a trained standby person watching from outside."
+      }
+    },
+    {
+      "type": "ar",
+      "title": {
+        "en": "Rescue without entering",
+        "hi": "बिना अंदर घुसे बचाव",
+        "sat": "Rescue without entering"
+      },
+      "body": {
+        "en": "In AR, use the tripod and harness to pull a casualty out. Most confined-space deaths are would-be rescuers who rushed in — never do that.",
+        "hi": "एआर में, घायल को बाहर निकालने के लिए ट्राइपॉड और हार्नेस का उपयोग करें। सीमित स्थान में अधिकांश मौतें बिना सोचे अंदर दौड़ने वाले बचावकर्ताओं की होती हैं — ऐसा कभी न करें।",
+        "sat": "In AR, use the tripod and harness to pull a casualty out. Most confined-space deaths are would-be rescuers who rushed in — never do that."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "prompt": {
+        "en": "What best describes a confined space?",
+        "hi": "सीमित स्थान का सबसे सही वर्णन क्या है?",
+        "sat": "What best describes a confined space?"
+      },
+      "options": [
+        {"en": "Limited entry/exit, not made for continuous work", "hi": "सीमित प्रवेश/निकास, लगातार काम के लिए नहीं बना", "sat": "Limited entry/exit, not made for continuous work"},
+        {"en": "A large open field", "hi": "एक बड़ा खुला मैदान", "sat": "A large open field"},
+        {"en": "An office room", "hi": "एक कार्यालय कक्ष", "sat": "An office room"},
+        {"en": "A parking lot", "hi": "एक पार्किंग स्थल", "sat": "A parking lot"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "Why is H2S gas so dangerous?",
+        "hi": "H2S गैस इतनी खतरनाक क्यों है?",
+        "sat": "Why is H2S gas so dangerous?"
+      },
+      "options": [
+        {"en": "It is toxic and deadens your sense of smell", "hi": "यह विषैली है और सूँघने की क्षमता को सुन्न कर देती है", "sat": "It is toxic and deadens your sense of smell"},
+        {"en": "It has no effect", "hi": "इसका कोई असर नहीं होता", "sat": "It has no effect"},
+        {"en": "It only smells bad", "hi": "यह केवल बदबू देती है", "sat": "It only smells bad"},
+        {"en": "It increases oxygen", "hi": "यह ऑक्सीजन बढ़ाती है", "sat": "It increases oxygen"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "Before entering a confined space you must:",
+        "hi": "सीमित स्थान में प्रवेश से पहले आपको क्या करना ज़रूरी है:",
+        "sat": "Before entering a confined space you must:"
+      },
+      "options": [
+        {"en": "Test the air with a gas detector and get a permit", "hi": "गैस डिटेक्टर से हवा जाँचें और परमिट लें", "sat": "Test the air with a gas detector and get a permit"},
+        {"en": "Enter straight away", "hi": "सीधे अंदर चले जाएँ", "sat": "Enter straight away"},
+        {"en": "Turn off the lights", "hi": "रोशनी बंद कर दें", "sat": "Turn off the lights"},
+        {"en": "Do nothing special", "hi": "कुछ खास न करें", "sat": "Do nothing special"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "A co-worker collapses inside. You should:",
+        "hi": "अंदर एक साथी बेहोश हो जाता है। आपको क्या करना चाहिए:",
+        "sat": "A co-worker collapses inside. You should:"
+      },
+      "options": [
+        {"en": "Raise the alarm and use rescue equipment — do not rush in", "hi": "अलार्म बजाएँ और बचाव उपकरण का उपयोग करें — बिना सुरक्षा अंदर न दौड़ें", "sat": "Raise the alarm and use rescue equipment — do not rush in"},
+        {"en": "Rush in immediately to help", "hi": "मदद के लिए तुरंत अंदर दौड़ें", "sat": "Rush in immediately to help"},
+        {"en": "Wait and watch", "hi": "इंतज़ार करें और देखें", "sat": "Wait and watch"},
+        {"en": "Go home", "hi": "घर चले जाएँ", "sat": "Go home"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "Which gas is explosive and common in mines?",
+        "hi": "खदानों में कौन-सी गैस विस्फोटक और आम है?",
+        "sat": "Which gas is explosive and common in mines?"
+      },
+      "options": [
+        {"en": "Methane", "hi": "मीथेन", "sat": "Methane"},
+        {"en": "Oxygen", "hi": "ऑक्सीजन", "sat": "Oxygen"},
+        {"en": "Nitrogen", "hi": "नाइट्रोजन", "sat": "Nitrogen"},
+        {"en": "Steam", "hi": "भाप", "sat": "Steam"}
+      ],
+      "answer": 0
+    }
+  ]
+}

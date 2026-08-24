@@ -1,0 +1,150 @@
+{
+  "_comment": "Santali ('sat') strings mirror English as an interim placeholder. A native Ol Chiki speaker must replace them before final submission (see app/README.md).",
+  "id": "fire_explosion",
+  "domain": "Fire & Explosion",
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Fire & Explosion Safety",
+    "hi": "आग और विस्फोट सुरक्षा",
+    "sat": "Fire & Explosion Safety"
+  },
+  "steps": [
+    {
+      "type": "info",
+      "title": {
+        "en": "Know the fire triangle",
+        "hi": "आग का त्रिकोण जानें",
+        "sat": "Know the fire triangle"
+      },
+      "body": {
+        "en": "A fire needs three things: fuel, heat, and oxygen. Remove any one of them and the fire dies.",
+        "hi": "आग को तीन चीज़ों की ज़रूरत होती है: ईंधन, गर्मी और ऑक्सीजन। इनमें से किसी एक को हटाने पर आग बुझ जाती है।",
+        "sat": "A fire needs three things: fuel, heat, and oxygen. Remove any one of them and the fire dies."
+      }
+    },
+    {
+      "type": "info",
+      "title": {
+        "en": "Common ignition sources",
+        "hi": "आग के सामान्य स्रोत",
+        "sat": "Common ignition sources"
+      },
+      "body": {
+        "en": "In mines and plants, fires start from electrical faults, methane gas, welding or hot work, and friction sparks. Keep fuel away from these.",
+        "hi": "खदानों और कारखानों में आग बिजली के दोष, मीथेन गैस, वेल्डिंग या गर्म कार्य, और घर्षण की चिंगारी से लगती है। ईंधन को इनसे दूर रखें।",
+        "sat": "In mines and plants, fires start from electrical faults, methane gas, welding or hot work, and friction sparks. Keep fuel away from these."
+      }
+    },
+    {
+      "type": "ar",
+      "title": {
+        "en": "Find the nearest extinguisher",
+        "hi": "नज़दीकी अग्निशामक यंत्र ढूँढें",
+        "sat": "Find the nearest extinguisher"
+      },
+      "body": {
+        "en": "Look around you in AR and identify the nearest ABC dry-powder extinguisher. Know its location before an emergency.",
+        "hi": "एआर में अपने चारों ओर देखें और नज़दीकी ABC ड्राई-पाउडर अग्निशामक यंत्र की पहचान करें। आपातकाल से पहले उसका स्थान जानें।",
+        "sat": "Look around you in AR and identify the nearest ABC dry-powder extinguisher. Know its location before an emergency."
+      }
+    },
+    {
+      "type": "ar",
+      "title": {
+        "en": "Practise the PASS technique",
+        "hi": "PASS तकनीक का अभ्यास करें",
+        "sat": "Practise the PASS technique"
+      },
+      "body": {
+        "en": "Pull the pin, Aim at the base of the fire, Squeeze the handle, and Sweep side to side. Practise it in AR.",
+        "hi": "पिन खींचें (Pull), आग के आधार पर निशाना लगाएँ (Aim), हैंडल दबाएँ (Squeeze) और अगल-बगल घुमाएँ (Sweep)। एआर में इसका अभ्यास करें।",
+        "sat": "Pull the pin, Aim at the base of the fire, Squeeze the handle, and Sweep side to side. Practise it in AR."
+      }
+    },
+    {
+      "type": "info",
+      "title": {
+        "en": "Alarm & evacuation",
+        "hi": "अलार्म और निकासी",
+        "sat": "Alarm & evacuation"
+      },
+      "body": {
+        "en": "Raise the alarm first. Never use lifts. Follow the marked route to the assembly point and wait for the head count.",
+        "hi": "सबसे पहले अलार्म बजाएँ। लिफ्ट का कभी उपयोग न करें। चिह्नित रास्ते से सभा स्थल पर जाएँ और गिनती का इंतज़ार करें।",
+        "sat": "Raise the alarm first. Never use lifts. Follow the marked route to the assembly point and wait for the head count."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "prompt": {
+        "en": "What three things does a fire need?",
+        "hi": "आग को किन तीन चीज़ों की ज़रूरत होती है?",
+        "sat": "What three things does a fire need?"
+      },
+      "options": [
+        {"en": "Fuel, heat, oxygen", "hi": "ईंधन, गर्मी, ऑक्सीजन", "sat": "Fuel, heat, oxygen"},
+        {"en": "Water, air, dust", "hi": "पानी, हवा, धूल", "sat": "Water, air, dust"},
+        {"en": "Smoke, ash, noise", "hi": "धुआँ, राख, शोर", "sat": "Smoke, ash, noise"},
+        {"en": "Light, sound, gas", "hi": "रोशनी, आवाज़, गैस", "sat": "Light, sound, gas"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "What is the correct order to use an extinguisher?",
+        "hi": "अग्निशामक यंत्र के उपयोग का सही क्रम क्या है?",
+        "sat": "What is the correct order to use an extinguisher?"
+      },
+      "options": [
+        {"en": "Pull, Aim, Squeeze, Sweep (PASS)", "hi": "पुल, एम, स्क्वीज़, स्वीप (PASS)", "sat": "Pull, Aim, Squeeze, Sweep (PASS)"},
+        {"en": "Spray and run away", "hi": "स्प्रे करें और भागें", "sat": "Spray and run away"},
+        {"en": "Shake and throw it", "hi": "हिलाएँ और फेंकें", "sat": "Shake and throw it"},
+        {"en": "Pour water on it", "hi": "उस पर पानी डालें", "sat": "Pour water on it"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "Which is safest for a live electrical fire?",
+        "hi": "जीवित (लाइव) बिजली की आग के लिए सबसे सुरक्षित क्या है?",
+        "sat": "Which is safest for a live electrical fire?"
+      },
+      "options": [
+        {"en": "Water", "hi": "पानी", "sat": "Water"},
+        {"en": "CO2 extinguisher", "hi": "CO2 अग्निशामक", "sat": "CO2 extinguisher"},
+        {"en": "Foam", "hi": "फोम", "sat": "Foam"},
+        {"en": "A wet cloth", "hi": "गीला कपड़ा", "sat": "A wet cloth"}
+      ],
+      "answer": 1
+    },
+    {
+      "prompt": {
+        "en": "On discovering a fire, what should you do first?",
+        "hi": "आग दिखने पर सबसे पहले क्या करना चाहिए?",
+        "sat": "On discovering a fire, what should you do first?"
+      },
+      "options": [
+        {"en": "Raise the alarm and warn others", "hi": "अलार्म बजाएँ और दूसरों को सचेत करें", "sat": "Raise the alarm and warn others"},
+        {"en": "Fight a large fire alone", "hi": "अकेले बड़ी आग से लड़ें", "sat": "Fight a large fire alone"},
+        {"en": "Collect your belongings", "hi": "अपना सामान इकट्ठा करें", "sat": "Collect your belongings"},
+        {"en": "Hide and wait", "hi": "छिप कर इंतज़ार करें", "sat": "Hide and wait"}
+      ],
+      "answer": 0
+    },
+    {
+      "prompt": {
+        "en": "During evacuation you should:",
+        "hi": "निकासी के दौरान आपको क्या करना चाहिए:",
+        "sat": "During evacuation you should:"
+      },
+      "options": [
+        {"en": "Take the stairs to the assembly point", "hi": "सीढ़ियों से सभा स्थल जाएँ", "sat": "Take the stairs to the assembly point"},
+        {"en": "Use the lift", "hi": "लिफ्ट का उपयोग करें", "sat": "Use the lift"},
+        {"en": "Go back inside for items", "hi": "सामान के लिए वापस अंदर जाएँ", "sat": "Go back inside for items"},
+        {"en": "Push and run", "hi": "धक्का देकर दौड़ें", "sat": "Push and run"}
+      ],
+      "answer": 0
+    }
+  ]
+}

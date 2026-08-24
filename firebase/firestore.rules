@@ -1,0 +1,47 @@
+rules_version = '2';
+
+// JOHAR Firestore security rules.
+// Role is carried as a custom claim on the auth token: 'worker' | 'supervisor' | 'admin'.
+// NOTE: the Admin SDK (Cloud Functions / the Vercel server) bypasses these rules,
+// so certificate issuance stays server-side even though clients are denied writes.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function role() { return request.auth.token.role; }
+    function isAdmin() { return isSignedIn() && role() == 'admin'; }
+    function isSupervisor() { return isSignedIn() && (role() == 'supervisor' || role() == 'admin'); }
+
+    // Worker profiles: a worker sees/edits their own; supervisors read; admins manage all.
+    match /workers/{uid} {
+      allow read:   if isSignedIn() && (request.auth.uid == uid || isSupervisor());
+      allow create: if isSignedIn() && request.auth.uid == uid;
+      allow update: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /employers/{employerId} {
+      allow read:  if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Module catalog metadata (content is also bundled in-app for offline).
+    match /modules/{moduleId} {
+      allow read:  if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Assessment attempts: a worker creates their own; supervisors/admins read.
+    match /attempts/{attemptId} {
+      allow read:   if isSignedIn() && (resource.data.workerId == request.auth.uid || isSupervisor());
+      allow create: if isSignedIn() && request.resource.data.workerId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    // Certificates: readable by the owner + supervisors; issued ONLY server-side.
+    match /certificates/{certId} {
+      allow read:  if isSignedIn() && (resource.data.workerId == request.auth.uid || isSupervisor());
+      allow write: if false; // Admin SDK only (Cloud Functions / Vercel API)
+    }
+  }
+}
