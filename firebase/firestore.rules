@@ -8,15 +8,25 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     function isSignedIn() { return request.auth != null; }
-    function role() { return request.auth.token.role; }
-    function isAdmin() { return isSignedIn() && role() == 'admin'; }
-    function isSupervisor() { return isSignedIn() && (role() == 'supervisor' || role() == 'admin'); }
+    function role() { return isSignedIn() ? request.auth.token.get('role', 'worker') : null; }
+    function isAdmin() { return role() == 'admin'; }
+    function isSupervisor() { return role() == 'supervisor' || role() == 'admin'; }
+    function isOwner(uid) { return isSignedIn() && request.auth.uid == uid; }
 
-    // Worker profiles: a worker sees/edits their own; supervisors read; admins manage all.
+    // A worker may edit their own profile but must never grant themselves a role
+    // (privilege escalation guard — roles are set only via the admin Cloud Function).
+    function roleNotEscalated() {
+      return !('role' in request.resource.data)
+        || (resource != null && request.resource.data.role == resource.data.role);
+    }
+
+    // Worker profiles.
     match /workers/{uid} {
-      allow read:   if isSignedIn() && (request.auth.uid == uid || isSupervisor());
-      allow create: if isSignedIn() && request.auth.uid == uid;
-      allow update: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow read:   if isOwner(uid) || isSupervisor();
+      allow create: if isOwner(uid) && roleNotEscalated()
+                    && request.resource.data.keys().hasOnly(
+                         ['name', 'phone', 'employerId', 'preferredLang', 'createdAt', 'updatedAt']);
+      allow update: if (isOwner(uid) && roleNotEscalated()) || isAdmin();
       allow delete: if isAdmin();
     }
 
@@ -25,23 +35,33 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Module catalog metadata (content is also bundled in-app for offline).
+    // Module catalog metadata (content is also bundled in-app for offline use).
     match /modules/{moduleId} {
       allow read:  if isSignedIn();
       allow write: if isAdmin();
     }
 
-    // Assessment attempts: a worker creates their own; supervisors/admins read.
+    // Assessment attempts: a worker records their own; kept immutable for audit.
     match /attempts/{attemptId} {
       allow read:   if isSignedIn() && (resource.data.workerId == request.auth.uid || isSupervisor());
-      allow create: if isSignedIn() && request.resource.data.workerId == request.auth.uid;
-      allow update, delete: if isAdmin();
+      allow create: if isOwner(request.resource.data.workerId)
+                    && request.resource.data.score is number
+                    && request.resource.data.score >= 0
+                    && request.resource.data.score <= 100
+                    && request.resource.data.moduleId is string;
+      allow update: if isAdmin();
+      allow delete: if false; // preserve the compliance audit trail
     }
 
-    // Certificates: readable by the owner + supervisors; issued ONLY server-side.
+    // Certificates: readable by the owner + supervisors; created/updated ONLY server-side.
     match /certificates/{certId} {
       allow read:  if isSignedIn() && (resource.data.workerId == request.auth.uid || isSupervisor());
       allow write: if false; // Admin SDK only (Cloud Functions / Vercel API)
+    }
+
+    // Default deny — any collection not matched above is locked down.
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

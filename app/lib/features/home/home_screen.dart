@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../core/constants.dart';
 import '../../core/services/local_store.dart';
 import '../../models/training_module.dart';
+import '../certificate/certificate_service.dart';
 import '../modules/module_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _modules = _load();
+    // Sync any certificates that were issued while offline (fire-and-forget).
+    CertificateService.flushPending();
   }
 
   Future<List<TrainingModule>> _load() async {

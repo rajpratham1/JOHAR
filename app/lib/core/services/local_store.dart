@@ -54,4 +54,9 @@ class LocalStore {
     p.add(json);
     await _prefs.setStringList('pendingCerts', p);
   }
+
+  /// Overwrite the pending queue (used after a sync flush leaves only failures).
+  static Future<void> replacePending(List<String> items) async {
+    await _prefs.setStringList('pendingCerts', items);
+  }
 }

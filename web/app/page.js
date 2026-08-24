@@ -1,8 +1,13 @@
+import { ShieldMark } from "./_components/shield";
+
 export default function Home() {
   const apkUrl = process.env.NEXT_PUBLIC_APK_URL || "#";
   return (
     <section>
       <div className="hero">
+        <div className="logo-mark">
+          <ShieldMark size={40} />
+        </div>
         <h1>Every worker, safe.</h1>
         <p>
           JOHAR is an AR-based vocational safety trainer for Jharkhand&apos;s mining, steel and

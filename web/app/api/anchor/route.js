@@ -25,13 +25,27 @@ export async function POST(req) {
     const key = certIdKey(cert.certId);
     const hash = dataHashOf(cert);
 
+    const ref = db().collection("certificates").doc(cert.certId);
+
+    // Idempotency: if this cert was already anchored (e.g. an offline retry
+    // resending it), don't issue again — the contract would revert on a
+    // duplicate. Just report the existing result.
+    const existing = await ref.get();
+    if (existing.exists && existing.data().txHash) {
+      const d = existing.data();
+      return NextResponse.json({
+        ok: true,
+        txHash: d.txHash,
+        dataHash: d.dataHash,
+        alreadyIssued: true,
+      });
+    }
+
     const contract = getWriteContract();
     const tx = await contract.issueCertificate(key, hash);
     const receipt = await tx.wait();
 
-    await db()
-      .collection("certificates")
-      .doc(cert.certId)
+    await ref
       .set(
         {
           ...cert,

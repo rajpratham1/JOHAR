@@ -30,6 +30,28 @@ class CertificateService {
 
   static Future<AnchorStatus> anchor(Certificate cert) async {
     final body = json.encode(cert.toJson());
+    if (await _post(body)) return AnchorStatus.anchored;
+    await LocalStore.addPendingCert(body); // offline / error → retry later
+    return AnchorStatus.queuedOffline;
+  }
+
+  /// Retries every queued certificate. Safe to call on app start / when back
+  /// online — the /api/anchor endpoint is idempotent, so re-sending an already
+  /// anchored cert just succeeds. Certs that still fail stay queued.
+  static Future<void> flushPending() async {
+    final pending = LocalStore.pendingCerts();
+    if (pending.isEmpty) return;
+    final remaining = <String>[];
+    for (final body in pending) {
+      if (!await _post(body)) remaining.add(body);
+    }
+    if (remaining.length != pending.length) {
+      await LocalStore.replacePending(remaining);
+    }
+  }
+
+  /// POSTs a cert JSON body to the anchor API. Returns true on a 2xx response.
+  static Future<bool> _post(String body) async {
     try {
       final res = await http
           .post(
@@ -38,14 +60,9 @@ class CertificateService {
             body: body,
           )
           .timeout(const Duration(seconds: 12));
-      if (res.statusCode >= 200 && res.statusCode < 300) {
-        return AnchorStatus.anchored;
-      }
-      await LocalStore.addPendingCert(body); // server reachable but errored
-      return AnchorStatus.queuedOffline;
+      return res.statusCode >= 200 && res.statusCode < 300;
     } catch (_) {
-      await LocalStore.addPendingCert(body); // offline / timeout
-      return AnchorStatus.queuedOffline;
+      return false; // offline / timeout
     }
   }
 }
