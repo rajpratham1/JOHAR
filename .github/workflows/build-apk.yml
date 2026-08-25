@@ -54,6 +54,28 @@ jobs:
       - name: Generate localizations
         run: flutter gen-l10n
 
+      # Some older Flutter plugins (e.g. flutter_tts) compile against a low Android
+      # compileSdk (31) while their transitive AndroidX deps now require API 34+.
+      # This Gradle init script raises compileSdk to 35 for library (plugin) modules
+      # ONLY, leaving the app module at its Flutter-template default. Written in Groovy
+      # so it works no matter whether Flutter generates Groovy or Kotlin build files,
+      # and it survives the `flutter create` regeneration of the android/ folder.
+      - name: Force plugin compileSdk (AAR metadata fix)
+        run: |
+          mkdir -p "$HOME/.gradle/init.d"
+          F="$HOME/.gradle/init.d/johar-compile-sdk.gradle"
+          {
+            echo "allprojects {"
+            echo "  afterEvaluate { project ->"
+            echo "    if (project.plugins.hasPlugin('com.android.library')) {"
+            echo "      try { project.android.compileSdk = 35 } catch (Exception e) { project.android.compileSdkVersion 35 }"
+            echo "    }"
+            echo "  }"
+            echo "}"
+          } > "$F"
+          echo '----- wrote gradle init script -----'
+          cat "$F"
+
       - name: Build release APK
         run: >
           flutter build apk --release
